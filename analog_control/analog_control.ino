@@ -1,11 +1,9 @@
-uint8_t d4 = 2;
 uint8_t d5 = 14;
 uint8_t d6 = 12;
 uint8_t d7 = 13;
 
 void setup() {
   Serial.begin(115200);
-  pinMode(d4, OUTPUT);
   pinMode(d5, OUTPUT);
   pinMode(d6, OUTPUT);
   pinMode(d7, OUTPUT);
@@ -15,7 +13,7 @@ int get_a0 () {
     int mean = 0;
     for (int i = 0; i < 20; i++) {
       mean += analogRead(A0);
-      delay(1);
+      delay(20);
     }
     return mean / 20;
 }
@@ -27,26 +25,22 @@ void loop() {
   Serial.println(a0_raw);
 
   if (a0_raw >= 0 && a0_raw < 256) {
-    digitalWrite(d4, 1);
+    digitalWrite(d5, 0);
+    digitalWrite(d6, 0);
+    digitalWrite(d7, 0);
+  } else if (a0_raw >= 256 && a0_raw < 512) {
     digitalWrite(d5, 0);
     digitalWrite(d6, 0);
     digitalWrite(d7, 1);
-  } else if (a0_raw >= 256 && a0_raw < 512) {
-    digitalWrite(d4, 1);
+  } else if (a0_raw >= 512 && a0_raw < 768) {
     digitalWrite(d5, 0);
     digitalWrite(d6, 1);
-    digitalWrite(d7, 0);
-  } else if (a0_raw >= 512 && a0_raw < 768) {
-    digitalWrite(d4, 1);
-    digitalWrite(d5, 1);
-    digitalWrite(d6, 0);
-    digitalWrite(d7, 0);
+    digitalWrite(d7, 1);
   } else {
-    digitalWrite(d4, 0);
-    digitalWrite(d5, 0);
-    digitalWrite(d6, 0);
-    digitalWrite(d7, 0);
+    digitalWrite(d5, 1);
+    digitalWrite(d6, 1);
+    digitalWrite(d7, 1);
   }
 
-  delay(960);
+  delay(600);
 }
