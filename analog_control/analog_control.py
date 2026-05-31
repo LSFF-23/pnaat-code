@@ -9,7 +9,7 @@ d7 = Pin(13, Pin.OUT)
 
 print("Starting...")
 
-def a0_get (sample_size = 20, time_window = 20):
+def a0_get (sample_size = 20, time_window = 400):
     delay_value = time_window // sample_size
     mean = 0
     for _ in range(sample_size):
@@ -38,4 +38,4 @@ while True:
         d6.value(1)
         d7.value(1)
     
-    time.sleep_ms(960)
+    time.sleep_ms(600)
