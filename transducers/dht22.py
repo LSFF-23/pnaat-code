@@ -4,7 +4,7 @@ from machine import Pin
 import time
 import dht
 
-sensor = dht.DHT22(Pin(15))
+sensor = dht.DHT22(Pin(15, Pin.OUT))
 
 while True:
     try:
